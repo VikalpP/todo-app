@@ -19,7 +19,7 @@ cd todo-app
 npm install
 ```
 
-## Running the project
+## Run the project
 
 To start the server, run the following
 
