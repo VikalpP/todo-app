@@ -1,0 +1,27 @@
+<div class="incomplete-todos">
+    <md-card>
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-title">Incomplete</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-content>
+            <md-list>
+                <md-list-item
+                    ng-repeat="todo in ctrl.Todos | filter: {isCompleted : false}"
+                >
+                    <md-checkbox ng-model="todo.isCompleted" aria-label="Is Todo Completed?"></md-checkbox>
+                    <span>{{ todo.content }}</span>
+                    <img src="../assets/svg/close.svg"
+                        class="md-secondary"
+                        ng-click="ctrl.deleteThisTodo(todo._id)"
+                        aria-label="Chat"
+                    ></md-icon>
+                </md-list-item>
+                <p class="md-subhead emptyError" ng-show="ctrl.isInCompletedTodosEmpty()">
+                    No TODOs left, yay!
+                </p>
+            </md-list>
+        </md-content>
+    </md-card>
+</div>

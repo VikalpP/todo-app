@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="appModule">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>TODO</title>
+        <link
+            rel="stylesheet"
+            href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.18/angular-material.min.css"
+        />
+        <link
+            href="https://fonts.googleapis.com/css?family=Montserrat"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="index.css" />
+    </head>
+
+    <body
+        ng-controller="mainCtrl as ctrl"
+        layout="row"
+        layout-align="center center"
+    >
+        <md-card id="mainContainer">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">TODOs</span>
+                    <!-- <span class="md-subhead">desc</span> -->
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content layout="column" layout-align="space-between">
+                <div ng-include="'./views/addTodoButton.html'"></div>
+
+                <div ng-include="'./views/incompleteTodos.html'"></div>
+
+                <div ng-include="'./views/completeTodos.html'"></div>
+            </md-card-content>
+        </md-card>
+    </body>
+
+    <!-- Required Angular.js Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script
+        src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-aria.min.js"
+        defer
+    ></script>
+    <script
+        src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-animate.min.js"
+        defer
+    ></script>
+    <script
+        src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.18/angular-material.min.js"
+        defer
+    ></script>
+
+    <!-- App Bootstrap script -->
+    <script type="text/javascript" defer>
+        angular.module("appModule", ["ngMaterial", "ngAnimate"]);
+    </script>
+
+    <!-- Main App controller -->
+    <script src="index.controller.js" defer></script>
+</html>

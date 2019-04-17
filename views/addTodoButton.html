@@ -1,0 +1,50 @@
+<div layout="row" layout-align="center center">
+    <md-button
+        id="btnAdd"
+        class="md-primary"
+        layout="row"
+        ng-click="ctrl.getNewTodoDialog($event)"
+    >
+        <!-- plus sign -->
+        <span style="font-size:30px">&#43;</span> &nbsp; Add New Todo
+    </md-button>
+</div>
+<div style="visibility: hidden">
+    <div id="addNewTodo_section" class="md-dialog-container">
+        <md-dialog layout-padding>
+            <md-dialog-content>
+                <form ng-submit="ctrl.addNewTodo()" name="ctrl.form_addTodo">
+                    <md-input-container class="md-block" flex>
+                        <label>Todo Content</label>
+                        <input
+                            name="todoContent"
+                            ng-model="ctrl.NewTodoContent"
+                            md-autofocus
+                            required
+                        />
+                        <div
+                            ng-messages="ctrl.form_addTodo.todoContent.$error"
+                            ng-show="ctrl.form_addTodo.todoContent.$touched && ctrl.form_addTodo.todoContent.$invalid"
+                        >
+                            <div ng-message="required">
+                                Please provide content to TODO!
+                            </div>
+                        </div>
+                    </md-input-container>
+                </form>
+            </md-dialog-content>
+
+            <md-dialog-actions layout="row">
+                <md-button
+                    ng-if="ctrl.form_addTodo.$valid"
+                    ng-click="ctrl.addNewTodo()"
+                >
+                    Add
+                </md-button>
+                <md-button ng-click="ctrl.dialog_cancel()">
+                    CANCEL
+                </md-button>
+            </md-dialog-actions>
+        </md-dialog>
+    </div>
+</div>
