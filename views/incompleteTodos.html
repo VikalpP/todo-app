@@ -2,7 +2,10 @@
     <md-card>
         <md-card-title>
             <md-card-title-text>
-                <span class="md-title">Incomplete</span>
+                <span class="md-title">
+                    <div class="counter">{{ ctrl.lengthInCompletedTodos() }}</div>
+                    Incomplete
+                </span>
             </md-card-title-text>
         </md-card-title>
         <md-content>
@@ -30,7 +33,7 @@
                     </md-button>
                 </md-list-item>
                 <p class="md-subhead emptyMessage"
-                    ng-show="ctrl.isInCompletedTodosEmpty()">
+                    ng-hide="ctrl.lengthInCompletedTodos()">
                     No TODOs left, yay!
                 </p>
             </md-list>

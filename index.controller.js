@@ -32,12 +32,12 @@
             };
 
             // Check if any completed Todos there or empty
-            vm.isCompletedTodosEmpty = _ =>
-                vm.Todos.filter(todo => todo.isCompleted).length == 0;
+            vm.lengthCompletedTodos = _ =>
+                vm.Todos.filter(todo => todo.isCompleted).length;
 
             // Check if any incompleted Todos there or empty
-            vm.isInCompletedTodosEmpty = _ =>
-                vm.Todos.filter(todo => !todo.isCompleted).length == 0;
+            vm.lengthInCompletedTodos = _ =>
+                vm.Todos.filter(todo => !todo.isCompleted).length;
 
             // Clear all completed Todos
             vm.clearAllCompleted = ev => {

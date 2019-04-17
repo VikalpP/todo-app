@@ -2,9 +2,12 @@
         <md-card>
             <md-card-title>
                 <md-card-title-text layout="row"  layout-align="space-between">
-                    <span class="md-title">Completed</span>
+                    <span class="md-title" layout="row" layout-align="center center">
+                        <div class="counter">{{ ctrl.lengthCompletedTodos() }}</div>
+                        Completed
+                    </span>
                     <span class="clearAll" 
-                        ng-if="!ctrl.isCompletedTodosEmpty()"
+                        ng-if="ctrl.lengthCompletedTodos()"
                         ng-click="ctrl.clearAllCompleted($event)"> clear All </span>
                 </md-card-title-text>
             </md-card-title>
@@ -26,7 +29,7 @@
                         </md-button>
 
                     </md-list-item>
-                    <p class="md-subhead emptyMessage" ng-show="ctrl.isCompletedTodosEmpty()">
+                    <p class="md-subhead emptyMessage" ng-hide="ctrl.lengthCompletedTodos()">
                         No completed TODOs!
                     </p>
                 </md-list>
