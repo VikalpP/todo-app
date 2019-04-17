@@ -1,24 +1,32 @@
-<div class="complete-todos">
+<div class="todo-section complete-todos">
         <md-card>
             <md-card-title>
-                <md-card-title-text>
+                <md-card-title-text layout="row"  layout-align="space-between">
                     <span class="md-title">Completed</span>
+                    <span class="clearAll" 
+                        ng-if="!ctrl.isCompletedTodosEmpty()"
+                        ng-click="ctrl.clearAllCompleted($event)"> clear All </span>
                 </md-card-title-text>
             </md-card-title>
             <md-content>
                 <md-list>
+                    <!-- Each Completed Todos loop -->
                     <md-list-item
-                        ng-repeat="todo in ctrl.Todos | filter: {isCompleted : true}"
-                    >
+                        ng-repeat="todo in ctrl.Todos | filter: {isCompleted : true}">
                         <md-checkbox ng-model="todo.isCompleted" aria-label="Is Todo Completed?"></md-checkbox>
                         <span class="todoContent strikethrough">{{ todo.content }}</span>
-                        <img src="../assets/svg/close.svg"
-                            class="md-secondary"
-                            ng-click="ctrl.deleteThisTodo(todo._id)"
-                            aria-label="Chat"
-                        ></md-icon>
+                        
+                        <!-- Delete Button -->
+                        <md-button class="md-icon-button md-secondary" aria-label="Delete This Todo">
+                            <md-tooltip md-direction="right">Delete this?</md-tooltip>
+                            <md-icon
+                                md-svg-src="../assets/svg/close.svg"
+                                ng-click="ctrl.deleteThisTodo(todo._id)"
+                            ></md-icon>
+                        </md-button>
+
                     </md-list-item>
-                    <p class="md-subhead emptyError" ng-show="ctrl.isCompletedTodosEmpty()">
+                    <p class="md-subhead emptyMessage" ng-show="ctrl.isCompletedTodosEmpty()">
                         No completed TODOs!
                     </p>
                 </md-list>

@@ -1,15 +1,24 @@
-/* * {
+* {
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
-} */
+}
+
 body {
     font-family: "Montserrat", sans-serif;
 }
 
 #mainContainer {
-    width: 100%;
-    max-width: 480px;
+    width: 90%;
+    max-width: 960px;
+}
+
+.clearAll {
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
 }
 
 #btnAdd {
@@ -19,39 +28,33 @@ body {
     padding-right: 16px;
 }
 
-.emptyError {
-    text-align: center;
+.emptyMessage { text-align: center }
+
+.todo-section md-card-title {
+    background-color: rgb(63, 81, 181);
+    color: white;
 }
 
 /* md-list-item */
-
-md-list-item {
-    opacity: 1;
-}
+md-list-item { opacity: 1 }
 md-list-item.ng-enter {
     transition: 0.5s;
     opacity: 0;
 }
-md-list-item.ng-enter-active {
-    opacity: 1;
-}
+md-list-item.ng-enter-active { opacity: 1 }
 md-list-item.ng-leave {
     transition: 0.5s;
     opacity: 1;
 }
-md-list-item.ng-leave-active {
-    opacity: 0;
-}
-span.todoContent {
-    line-height: 1.6em;
-}
+md-list-item.ng-leave-active { opacity: 0 }
+
+span.todoContent { line-height: 1.6em }
 
 md-checkbox.md-checked .md-icon {
     background-color: rgba(63, 81, 181, 0.5);
 }
 
 /* Strikethrough */
-
 .strikethrough {
     display: inline-block;
     position: relative;
@@ -83,13 +86,16 @@ md-checkbox.md-checked .md-icon {
     transform-origin: center right;
 }
 
-/* Keyframes for initial animation */
-
+/* Keyframes */
 @keyframes strikethrough {
-    from {
-        transform: scaleX(0);
-    }
-    to {
-        transform: scaleX(1);
+    from { transform: scaleX(0) }
+    to { transform: scaleX(1) }
+}
+
+
+/* Non Desktop queries */
+@media screen and (max-width: 960px) {
+    #mainContainer {
+        max-width: 480px;
     }
 }

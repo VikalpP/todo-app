@@ -14,59 +14,68 @@
                 { _id: 2, content: "TODO 2", isCompleted: false }
             ];
 
-            vm.show_NewTodoSection_Dialog = ev => {
-                vm.form_addTodo.$setPristine();
-                $mdDialog.show({
-                    multiple: false,
-                    contentElement: "#addNewTodo_section",
-                    parent: $body,
-                    targetEvent: ev,
-                    clickOutsideToClose: true,
-                    escapeToClose: true,
-                    onRemoving: () => {
-                        vm.NewTodoContent = "";
-                        vm.form_addTodo.$setPristine();
-                        console.log("Removed Dialog");
-                    }
-                });
-            };
-
             // -------------- Actions ---------------
 
-            // vm.markAsCompleteTodo = id => {
-            //     vm.Todos = vm.Todos.map(todo =>
-            //         todo._id === id ? { ...todo, isCompleted: true } : todo
-            //     );
-            //     console.log(vm.Todos);
-            // };
-
-            vm.addNewTodo = () => {
+            // Add new Todo
+            vm.addNewTodo = content => {
                 vm.Todos.push({
                     _id: IDcounter++,
-                    content: vm.NewTodoContent,
+                    content,
                     isCompleted: false
                 });
                 vm.dialog_cancel();
             };
 
+            // Delete Todo using (_id)
             vm.deleteThisTodo = id => {
                 vm.Todos = vm.Todos.filter(todo => todo._id !== id);
-                console.log(vm.Todos);
             };
 
-            vm.getNewTodoDialog = ev => {
-                vm.show_NewTodoSection_Dialog(ev);
-            };
-
-            vm.dialog_cancel = () => {
-                $mdDialog.cancel();
-            };
-
-            vm.isCompletedTodosEmpty = () =>
+            // Check if any completed Todos there or empty
+            vm.isCompletedTodosEmpty = _ =>
                 vm.Todos.filter(todo => todo.isCompleted).length == 0;
 
-            vm.isInCompletedTodosEmpty = () =>
+            // Check if any incompleted Todos there or empty
+            vm.isInCompletedTodosEmpty = _ =>
                 vm.Todos.filter(todo => !todo.isCompleted).length == 0;
+
+            // Clear all completed Todos
+            vm.clearAllCompleted = ev => {
+                var confirm = $mdDialog
+                    .confirm()
+                    .title("Would you like to delete all Todos?")
+                    .ariaLabel("delete all completed")
+                    .targetEvent(ev)
+                    .ok("Please do it!")
+                    .cancel("No!");
+
+                $mdDialog.show(confirm).then(
+                    () =>
+                        // clear all
+                        (vm.Todos = vm.Todos.filter(todo => !todo.isCompleted)),
+                    _ => {} // not to clear
+                );
+            };
+
+            // Show new Todo Dialog
+            vm.show_NewTodoDialog = ev => {
+                var newTodoDialog = $mdDialog
+                    .prompt()
+                    .title("What would you like to do?")
+                    .placeholder("Todo ...")
+                    .ariaLabel("Todo Content")
+                    .targetEvent(ev)
+                    .required(true)
+                    .ok("Okay!")
+                    .cancel("Cancel");
+
+                $mdDialog
+                    .show(newTodoDialog)
+                    .then(result => vm.addNewTodo(result), _ => {});
+            };
+
+            // hide new Todo Dialog
+            vm.dialog_cancel = () => $mdDialog.cancel();
         }
     ]);
 })();
